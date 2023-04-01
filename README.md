@@ -11,6 +11,17 @@ Laravel Priority Queue Driver uses the `database` driver.
 - Laravel 9 & 10
 - PHP 8.1+
 
+## Architecture
+
+Drawing diagram...
+
+## Why `database`?
+
+- Easy and simple to implement.
+- Utilize the `ORDER BY` and `INDEX` for fast queue msgs pop process.
+- Super visibility (you can view the jobs and their data in DB).
+- Super flexibility (you can change the weight directly in DB to unblock important msgs).
+
 ## Installation
 
 Install the library:
@@ -39,8 +50,9 @@ Open `config/queue.php` and add this into the `connections` array:
         'retry_after' => 90,
     ],
 ```
+### Note
 
-Note: Highly recommend you to use a different database connection (eg `mysql_secondary`) to avoid the worker processes ramming your 
+We highly recommend you to use a different database connection (eg `mysql_secondary`) to avoid the worker processes ramming your 
 primary database.
 
 ## Usage

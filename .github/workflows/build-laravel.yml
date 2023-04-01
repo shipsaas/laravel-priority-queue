@@ -16,7 +16,10 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                version: [ '^9', '^10']
+                version: [
+                    '"laravel/framework" "^9" "orchestra/testbench" "^7"',
+                    '"laravel/framework" "^10" "orchestra/testbench" "^8"'
+                ]
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v3
@@ -35,7 +38,7 @@ jobs:
                     php -v
                     mysql -uroot -proot -e "CREATE DATABASE priority_queue;"
                     composer install --no-interaction
-                    composer require "laravel/framework" "${{ matrix.version }}" -W
+                    composer require ${{ matrix.version }} -W
                     echo "$TESTING_ENV" > .env.testing
 
             -   name: PHPUnit tests
