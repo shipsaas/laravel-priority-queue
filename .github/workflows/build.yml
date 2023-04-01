@@ -1,6 +1,4 @@
 name: Build & Test
-env:
-    SSH_CONFIG: ${{ secrets.TESTING_ENV }}
 
 on:
     pull_request:
@@ -30,7 +28,9 @@ jobs:
             -   name: Setup
                 if: success()
                 run: |
+                    sudo service mysql start
                     php -v
+                    mysql -uroot -proot -e "CREATE DATABASE priority_queue;"
                     composer install --no-interaction
                     echo "$TESTING_ENV" > .env.testing
 

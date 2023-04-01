@@ -26,8 +26,8 @@
         "fakerphp/faker": "^v1.20.0",
         "mockery/mockery": "^1.5.1",
         "phpunit/phpunit": "^10",
-        "orchestra/testbench": "^7",
-        "phpunit/php-code-coverage": "^9.2.17",
+        "orchestra/testbench": "^8",
+        "phpunit/php-code-coverage": "^10",
         "friendsofphp/php-cs-fixer": "^3.10"
     },
     "extra": {
