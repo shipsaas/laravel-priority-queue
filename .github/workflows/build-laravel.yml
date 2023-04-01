@@ -12,7 +12,7 @@ on:
             - 'main'
 
 jobs:
-    build:
+    build_laravel9:
         strategy:
             fail-fast: false
             matrix:
