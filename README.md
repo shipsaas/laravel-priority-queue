@@ -15,7 +15,7 @@ Laravel Priority Queue Driver uses the `database` driver.
 
 ## Architecture
 
-Drawing diagram...
+![Seth Phat - Laravel Priority Queue](https://i.imgur.com/H8OEMhQ.png)
 
 ## Why `database`?
 
