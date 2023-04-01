@@ -1,5 +1,8 @@
 # ShipSaaS - Laravel Priority Queue Driver
 
+[![codecov](https://codecov.io/gh/shipsaas/laravel-priority-queue/branch/main/graph/badge.svg?token=V3HOOR12HA)](https://codecov.io/gh/shipsaas/laravel-priority-queue)
+[![Build & Test](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build.yml)
+
 A simple Priority Queue Driver for your Laravel Applications.
 
 Laravel Priority Queue Driver uses the `database` driver.
