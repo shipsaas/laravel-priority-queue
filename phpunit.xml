@@ -12,6 +12,7 @@
   <testsuites>
     <testsuite name="Laravel Priority Queue Test Suite">
       <directory suffix=".php">./tests/</directory>
+        <exclude>./tests/TestCase.php</exclude>
     </testsuite>
   </testsuites>
   <php>

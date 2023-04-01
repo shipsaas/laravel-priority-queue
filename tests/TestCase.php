@@ -9,7 +9,7 @@ use Orchestra\Testbench\TestCase as BaseTestCase;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use ShipSaasPriorityQueue\PriorityQueueServiceProvider;
 
-class TestCase extends BaseTestCase
+abstract class TestCase extends BaseTestCase
 {
     use WithFaker;
     use DatabaseTransactions;
