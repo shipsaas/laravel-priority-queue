@@ -2,13 +2,15 @@
 
 [![codecov](https://codecov.io/gh/shipsaas/laravel-priority-queue/branch/main/graph/badge.svg?token=V3HOOR12HA)](https://codecov.io/gh/shipsaas/laravel-priority-queue)
 [![Build & Test](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build.yml)
+[![Build & Test (Laravel 9, 10)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build-laravel.yml/badge.svg)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build-laravel.yml)
 
 A simple Priority Queue Driver for your Laravel Applications.
 
 Laravel Priority Queue Driver uses the `database` driver.
 
 ## Supports
-- Laravel 9 & 10
+- Laravel 10 (compatible by default)
+- Laravel 9 (supports until [August 8th, 2023](https://laravel.com/docs/10.x/releases))
 - PHP 8.1+
 
 ## Architecture
