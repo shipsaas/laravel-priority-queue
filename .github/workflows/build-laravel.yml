@@ -1,4 +1,4 @@
-name: Build & Test (Laravel vers)
+name: Build & Test (Laravel 9, 10)
 env:
     TESTING_ENV: ${{ secrets.TESTING_ENV }}
 
