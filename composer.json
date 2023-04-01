@@ -33,7 +33,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "SaasReady\\SaasServiceProvider"
+                "ShipSaasPriorityQueue\\PriorityQueueServiceProvider"
             ]
         }
     },
