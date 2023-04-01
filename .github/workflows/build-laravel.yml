@@ -35,7 +35,7 @@ jobs:
                     php -v
                     mysql -uroot -proot -e "CREATE DATABASE priority_queue;"
                     composer install --no-interaction
-                    composer require "laravel/framework" "${{ matrix.version }}"
+                    composer require "laravel/framework" "${{ matrix.version }}" -W
                     echo "$TESTING_ENV" > .env.testing
 
             -   name: PHPUnit tests
