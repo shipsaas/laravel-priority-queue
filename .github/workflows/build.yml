@@ -1,4 +1,6 @@
 name: Build & Test
+env:
+    TESTING_ENV: ${{ secrets.TESTING_ENV }}
 
 on:
     pull_request:
