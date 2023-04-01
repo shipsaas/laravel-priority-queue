@@ -17,8 +17,8 @@ jobs:
             fail-fast: false
             matrix:
                 version: [
-                    '^9',
-                    '^10'
+                    '9',
+                    '10'
                 ]
         runs-on: ubuntu-latest
         steps:
@@ -38,8 +38,21 @@ jobs:
                     php -v
                     mysql -uroot -proot -e "CREATE DATABASE priority_queue;"
                     composer install --no-interaction
-                    composer require "laravel/framework" "${{ matrix.version }}" -W
                     echo "$TESTING_ENV" > .env.testing
+
+            -   name: Laravel 9 composition
+                if: matrix.version == '9'
+                run: |
+                    composer require \
+                        "laravel/framework" "^9" \
+                        "orchestra/testbench" "^7" \
+                        "phpunit/phpunit" "^9" \
+                        "phpunit/php-code-coverage" "^9"
+
+            -   name: Laravel 10 composition
+                if: matrix.version == '10'
+                run: |
+                    composer require "laravel/framework" "^10"
 
             -   name: PHPUnit tests
                 if: success() && github.event.pull_request.draft == false
