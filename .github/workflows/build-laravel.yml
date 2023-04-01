@@ -17,7 +17,7 @@ jobs:
             fail-fast: false
             matrix:
                 version: [
-                    '"laravel/framework" "^9" "orchestra/testbench" "^7"',
+                    '"laravel/framework" "^9" "orchestra/testbench" "^7" "phpunit/phpunit" "^9.5"',
                     '"laravel/framework" "^10" "orchestra/testbench" "^8"'
                 ]
         runs-on: ubuntu-latest
