@@ -95,8 +95,15 @@ class SendEmail implements ShouldQueue
 You can use the normal Dispatcher or Queue Facade,... to dispatch the Queue Msgs:
 
 ```php
+// use Dispatcher
 SendEmail::dispatch($user, $emailContent)
     ->onConnection('database-priority');
+
+// use Queue Facade
+use Illuminate\Support\Facades\Queue;
+
+Queue::connection('database-priority')
+    ->push(new SendEmail($user, $emailContent));
 ```
 
 ## Run The Queue Worker
