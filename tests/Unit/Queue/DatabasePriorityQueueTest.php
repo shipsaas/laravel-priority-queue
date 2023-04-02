@@ -1,6 +1,6 @@
 <?php
 
-namespace ShipSaasPriorityQueue\Unit\Queue;
+namespace ShipSaasPriorityQueue\Tests\Unit\Queue;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;

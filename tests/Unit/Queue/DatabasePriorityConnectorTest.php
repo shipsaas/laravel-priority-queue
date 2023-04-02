@@ -1,6 +1,6 @@
 <?php
 
-namespace ShipSaasPriorityQueue\Unit\Queue;
+namespace ShipSaasPriorityQueue\Tests\Unit\Queue;
 
 use ShipSaasPriorityQueue\Queue\DatabasePriorityConnector;
 use ShipSaasPriorityQueue\Tests\TestCase;

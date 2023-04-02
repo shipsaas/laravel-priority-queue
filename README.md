@@ -39,7 +39,7 @@ php artisan vendor:publish --tag=priority-queue-migrations
 php artisan migrate
 ```
 
-### First Time Setup
+### One-Time Setup
 
 Open `config/queue.php` and add this into the `connections` array:
 
@@ -97,6 +97,15 @@ You can use the normal Dispatcher or Queue Facade,... to dispatch the Queue Msgs
 ```php
 SendEmail::dispatch($user, $emailContent)
     ->onConnection('database-priority');
+```
+
+## Run The Queue Worker
+
+Nothing different from the Laravel's Doc.
+
+```bash
+php artisan queue:work database-priority
+php artisan queue:work database-priority --queue=custom
 ```
 
 ## Contributors
