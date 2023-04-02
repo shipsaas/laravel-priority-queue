@@ -10,7 +10,7 @@ Laravel Priority Queue Driver uses the `database` driver.
 
 ## Supports
 - Laravel 10 (compatible by default)
-- Laravel 9 (supports until [August 8th, 2023](https://laravel.com/docs/10.x/releases))
+- Laravel 9 (supports until Laravel drops the bug fixes at [August 8th, 2023](https://laravel.com/docs/10.x/releases))
 - PHP 8.1+
 
 ## Architecture
@@ -32,7 +32,7 @@ Install the library:
 composer require shipsaas/laravel-priority-queue
 ```
 
-Export the migration and migrate
+Export and run the migration:
 
 ```bash
 php artisan vendor:publish --tag=priority-queue-migrations
@@ -52,6 +52,7 @@ Open `config/queue.php` and add this into the `connections` array:
         'retry_after' => 90,
     ],
 ```
+
 ### Note
 
 We highly recommend you to use a different database connection (eg `mysql_secondary`) to avoid the worker processes ramming your 
