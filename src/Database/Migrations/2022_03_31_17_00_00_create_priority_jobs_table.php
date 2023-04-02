@@ -16,6 +16,11 @@ return new class () extends Migration {
             $table->unsignedInteger('reserved_at')->nullable();
             $table->unsignedInteger('available_at')->index();
             $table->unsignedInteger('created_at')->index();
+
+            $table->rawIndex(
+                'priority DESC, created_at ASC',
+                'idx_priority_sort'
+            );
         });
     }
 
