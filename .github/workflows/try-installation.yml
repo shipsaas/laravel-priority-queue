@@ -1,0 +1,41 @@
+name: Try Install Package (Laravel 9 & 10)
+env:
+    TESTING_ENV: ${{ secrets.TESTING_ENV }}
+
+on:
+    pull_request:
+        branches:
+            - 'main'
+        types: [ opened, synchronize, reopened, ready_for_review ]
+    push:
+        branches:
+            - 'main'
+
+jobs:
+    build:
+        strategy:
+            fail-fast: false
+            matrix:
+                version: [ '9', '10' ]
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Setup PHP with coverage driver
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.version }}
+                    coverage: pcov
+
+            -   name: Setup and install package on Laravel 1-
+                if: success() && matrix.version == '10'
+                run: |
+                    composer global require laravel/installer
+                    laravel new laravel10
+                    cd laravel10
+                    composer require shipsaas/laravel-priority-queue
+
+            -   name: Setup and install package on Laravel 9
+                if: success() && matrix.version == '9'
+                run: |
+                    composer create-project laravel/laravel:^9.0 laravel9
+                    cd laravel9
+                    composer require shipsaas/laravel-priority-queue
