@@ -1,0 +1,38 @@
+name: Try Install Package (Laravel 9 & 10)
+env:
+    LOCAL_ENV: ${{ secrets.LOCAL_ENV }}
+
+on:
+    pull_request:
+        branches:
+            - 'main'
+        types: [ opened, synchronize, reopened, ready_for_review ]
+    push:
+        branches:
+            - 'main'
+
+jobs:
+    build:
+        strategy:
+            fail-fast: false
+            matrix:
+                version: [ '^9.0', '^10.0' ]
+        runs-on: ubuntu-latest
+        steps:
+            -   name: Setup PHP with coverage driver
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.1
+                    coverage: pcov
+
+            -   name: Setup and install package on Laravel
+                if: success()
+                run: |
+                    sudo service mysql start
+                    mysql -uroot -proot -e "CREATE DATABASE priority_queue;"
+                    composer create-project laravel/laravel:${{ matrix.version }} laravel
+                    cd laravel
+                    composer require shipsaas/laravel-priority-queue
+                    php artisan vendor:publish --tag=priority-queue-migrations
+                    echo "$LOCAL_ENV" > .env
+                    php artisan migrate
