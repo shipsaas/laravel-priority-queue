@@ -28,6 +28,7 @@ jobs:
             -   name: Setup and install package on Laravel
                 if: success()
                 run: |
+                    sudo service mysql start
                     mysql -uroot -proot -e "CREATE DATABASE priority_queue;"
                     composer create-project laravel/laravel:${{ matrix.version }} laravel
                     cd laravel
