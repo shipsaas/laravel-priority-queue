@@ -116,6 +116,15 @@ php artisan queue:work database-priority
 php artisan queue:work database-priority --queue=custom
 ```
 
+## Testing
+
+Run `composer test` 😆
+
+Available Tests:
+
+- Unit Testing
+- Integration Testing against MySQL and `queue:work` command
+
 ## Contributors
 - Seth Phat
 
