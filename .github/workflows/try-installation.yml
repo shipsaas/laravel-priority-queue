@@ -22,7 +22,7 @@ jobs:
             -   name: Setup PHP with coverage driver
                 uses: shivammathur/setup-php@v2
                 with:
-                    php-version: ${{ matrix.version }}
+                    php-version: 8.1
                     coverage: pcov
 
             -   name: Setup and install package on Laravel 10
