@@ -1,5 +1,7 @@
 # ShipSaaS - Laravel Priority Queue Driver
 
+[![Latest Version](http://poser.pugx.org/shipsaas/laravel-priority-queue/v)](https://packagist.org/packages/shipsaas/laravel-priority-queue)
+[![Total Downloads](http://poser.pugx.org/shipsaas/laravel-priority-queue/downloads)](https://packagist.org/packages/shipsaas/laravel-priority-queue)
 [![codecov](https://codecov.io/gh/shipsaas/laravel-priority-queue/branch/main/graph/badge.svg?token=V3HOOR12HA)](https://codecov.io/gh/shipsaas/laravel-priority-queue)
 [![Build & Test](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build.yml)
 [![Build & Test (Laravel 9, 10)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build-laravel.yml/badge.svg)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build-laravel.yml)
