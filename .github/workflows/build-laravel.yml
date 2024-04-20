@@ -1,4 +1,4 @@
-name: Build & Test (Laravel 9, 10)
+name: Build & Test (Laravel 10, 11)
 env:
     TESTING_ENV: ${{ secrets.TESTING_ENV }}
 
@@ -16,11 +16,7 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                version: [
-                    '9',
-                    '10',
-                    '11',
-                ]
+                version: ['10', '11']
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v3
@@ -40,16 +36,6 @@ jobs:
                     mysql -uroot -proot -e "CREATE DATABASE priority_queue;"
                     composer install --no-interaction
                     echo "$TESTING_ENV" > .env.testing
-
-            -   name: Laravel 9 composition
-                if: matrix.version == '9'
-                run: |
-                    composer require \
-                        "laravel/framework" "^9" \
-                        "orchestra/testbench" "^7" \
-                        "phpunit/phpunit" "^9" \
-                        "phpunit/php-code-coverage" "^9" \
-                        --with-all-dependencies
 
             -   name: Laravel 10 composition
                 if: matrix.version == '10'

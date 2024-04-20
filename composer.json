@@ -1,7 +1,7 @@
 {
     "name": "shipsaas/laravel-priority-queue",
     "type": "library",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Priority Queue implementation for your Laravel Applications",
     "keywords": [
         "laravel library",
@@ -19,14 +19,14 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.1|^8.2|^8.3",
-        "laravel/framework": "^9|^10|dev-master"
+        "php": "^8.2|^8.3",
+        "laravel/framework": "^10|^11|dev-master"
     },
     "require-dev": {
         "fakerphp/faker": "^v1.20.0",
         "mockery/mockery": "^1.5.1",
-        "phpunit/phpunit": "^9|^10|^11",
-        "orchestra/testbench": "^7|^8|^9",
+        "phpunit/phpunit": "^10",
+        "orchestra/testbench": "^8|^9",
         "phpunit/php-code-coverage": "^9|^10",
         "friendsofphp/php-cs-fixer": "^3.10"
     },
