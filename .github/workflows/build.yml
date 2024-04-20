@@ -38,7 +38,7 @@ jobs:
                     echo "$TESTING_ENV" > .env.testing
 
             -   name: PHPUnit tests with coverage
-                if: success() && github.event.pull_request.draft == false
+                if: success()
                 run: |
                     composer test-coverage
 
