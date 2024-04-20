@@ -1,28 +1,31 @@
-name: Try Install Package (Laravel 9 & 10)
+name: Try Install Package (Laravel 9, 10, 11)
 env:
     LOCAL_ENV: ${{ secrets.LOCAL_ENV }}
 
 on:
-    pull_request:
-        branches:
-            - 'main'
-        types: [ opened, synchronize, reopened, ready_for_review ]
-    push:
-        branches:
-            - 'main'
+    release:
+        types: [published]
 
 jobs:
     build:
         strategy:
             fail-fast: false
             matrix:
-                version: [ '^9.0', '^10.0' ]
+                version: [ '^9.0', '^10.0', '^11.0' ]
         runs-on: ubuntu-latest
         steps:
-            -   name: Setup PHP with coverage driver
+            -   name: Setup PHP (Laravel 9)
+                if: matrix.version == '^9.0'
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: 8.1
+                    coverage: pcov
+
+            -   name: Setup PHP (Laravel 10/11)
+                if: matrix.version == '^10.0' || matrix.version == '^11.0'
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.2
                     coverage: pcov
 
             -   name: Setup and install package on Laravel

@@ -18,7 +18,8 @@ jobs:
             matrix:
                 version: [
                     '9',
-                    '10'
+                    '10',
+                    '11',
                 ]
         runs-on: ubuntu-latest
         steps:
@@ -54,6 +55,11 @@ jobs:
                 if: matrix.version == '10'
                 run: |
                     composer require "laravel/framework" "^10" --with-all-dependencies
+
+            -   name: Laravel 11 composition
+                if: matrix.version == '11'
+                run: |
+                    composer require "laravel/framework" "^11" --with-all-dependencies
 
             -   name: PHPUnit tests
                 if: success() && github.event.pull_request.draft == false
