@@ -15,7 +15,7 @@ Laravel's Lifecycle without any hassle/hurdle.
 We can use built-in artisan command `php artisan queue:work` 😎.
 
 ## Supports
-- Laravel 11 
+- Laravel 11 (supports by default)
 - Laravel 10 (supports until Laravel drops the bug fixes at [August 6th, 2024](https://laravel.com/docs/11.x/releases))
 - PHP 8.2 & 8.3
 - Any database that Laravel supported.
