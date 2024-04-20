@@ -4,48 +4,57 @@
 [![Total Downloads](http://poser.pugx.org/shipsaas/laravel-priority-queue/downloads)](https://packagist.org/packages/shipsaas/laravel-priority-queue)
 [![codecov](https://codecov.io/gh/shipsaas/laravel-priority-queue/branch/main/graph/badge.svg?token=V3HOOR12HA)](https://codecov.io/gh/shipsaas/laravel-priority-queue)
 [![Build & Test](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build.yml/badge.svg)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build.yml)
-[![Build & Test (Laravel 9, 10)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build-laravel.yml/badge.svg)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build-laravel.yml)
+[![Build & Test (Laravel 10, 11)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build-laravel.yml/badge.svg)](https://github.com/shipsaas/laravel-priority-queue/actions/workflows/build-laravel.yml)
 
-A simple Priority Queue Driver for your Laravel Applications.
+A simple Priority Queue Driver for your Laravel Applications to serve your priority messages and 
+makes users happy 🔋.
 
-Laravel Priority Queue Driver uses the `database` driver.
+With the famous Repository Pattern of Laravel, Priority Queue Driver is easily get injected into
+Laravel's Lifecycle without any hassle/hurdle.
+
+We can use built-in artisan command `php artisan queue:work` 😎.
 
 ## Supports
-- Laravel 10 (compatible by default)
-- Laravel 9 (supports until Laravel drops the bug fixes at [August 8th, 2023](https://laravel.com/docs/10.x/releases))
-- PHP 8.1+
+- Laravel 11 (supports by default)
+- Laravel 10 (supports until Laravel drops the bug fixes at [August 6th, 2024](https://laravel.com/docs/11.x/releases))
+- PHP 8.2 & 8.3
+- Any database that Laravel supported.
 
-## Architecture
+## Architecture Diagram
 
 ![Seth Phat - Laravel Priority Queue](https://i.imgur.com/H8OEMhQ.png)
 
-## Why `database`?
+### Why Priority Queue Driver use Database?
 
-- Easy and simple to implement.
-- Utilize the `ORDER BY` and `INDEX` for fast queue msgs pop process.
-- Super visibility (you can view the jobs and their data in DB).
-- Super flexibility (you can change the weight directly in DB to unblock important msgs).
+- Everybody knows Database (MySQL, PgSQL, etc) 👀.
+- Easy and simple to implement ❤️.
+- Utilize the `ORDER BY` and `INDEX` for fast queue msgs pop process. Faster than any other stuff 🔥.
+- Highest visibility (you can view the jobs and their data in DB) ⭐️.
+- Highest flexibility (you can change the weight directly in DB to unblock important msgs) 💰.
+- No extra tool involved. Just Laravel 🥰.
 
-## Installation
-
-Install the library:
+## Install Laravel Priority Queue
 
 ```bash
 composer require shipsaas/laravel-priority-queue
 ```
 
-Export and run the migration:
+### One-Time Setup
+
+Export and run the migration (one-time):
 
 ```bash
+# if you don't need to adjust the migration, don't have to export it
 php artisan vendor:publish --tag=priority-queue-migrations
 php artisan migrate
 ```
 
-### One-Time Setup
-
 Open `config/queue.php` and add this into the `connections` array:
 
 ```php
+'connections' => [
+    // ... a lot of connections above
+    // then our lovely guy here
     'database-priority' => [
         'driver' => 'database-priority',
         'connection' => 'mysql',
@@ -53,11 +62,12 @@ Open `config/queue.php` and add this into the `connections` array:
         'queue' => 'default',
         'retry_after' => 90,
     ],
+],
 ```
 
-### Note
+## Scale/Reliability Consideration
 
-We highly recommend you to use a different database connection (eg `mysql_secondary`) to avoid the worker processes ramming your 
+It is recommended using a different database connection (eg `mysql_secondary`) to avoid the worker processes ramming your 
 primary database.
 
 ## Usage
@@ -86,7 +96,7 @@ class SendEmail implements ShouldQueue
     
     public function getJobWeight() : int
     {
-        return $this->user->isPro()
+        return $this->user->isUsingProPlan()
             ? 1000
             : 500;
     }
@@ -111,10 +121,12 @@ Queue::connection('database-priority')
 
 ## Run The Queue Worker
 
-Nothing different from the Laravel's Doc.
+Nothing different from the Laravel Documentation 😎. Just need to include the `database-priority` driver.
 
 ```bash
 php artisan queue:work database-priority
+
+# Extra win, priority on topic
 php artisan queue:work database-priority --queue=custom
 ```
 
