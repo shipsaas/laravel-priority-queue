@@ -24,6 +24,7 @@ We can use built-in artisan command `php artisan queue:work` 😎.
 
 ![Seth Phat - Laravel Priority Queue](https://i.imgur.com/H8OEMhQ.png)
 
+
 ### Why Priority Queue Driver use Database?
 
 - Everybody knows Database (MySQL, PgSQL, etc) 👀.
@@ -41,15 +42,14 @@ composer require shipsaas/laravel-priority-queue
 
 ### One-Time Setup
 
-Export and run the migration (one-time):
+Export and run the migration (one-time). We don't load migration by default just in case you want to customize the migration schema 😎.
 
 ```bash
-# if you don't need to adjust the migration, don't have to export it
 php artisan vendor:publish --tag=priority-queue-migrations
 php artisan migrate
 ```
 
-Open `config/queue.php` and add this into the `connections` array:
+Open `config/queue.php` and add this to the `connections` array:
 
 ```php
 'connections' => [
@@ -61,13 +61,14 @@ Open `config/queue.php` and add this into the `connections` array:
         'table' => 'priority_jobs',
         'queue' => 'default',
         'retry_after' => 90,
+        'after_commit' => false, // or true, depends on your need
     ],
 ],
 ```
 
 ## Scale/Reliability Consideration
 
-It is recommended using a different database connection (eg `mysql_secondary`) to avoid the worker processes ramming your 
+It is recommended to use a different database connection (eg `mysql_secondary`) to avoid the worker processes ramming your 
 primary database.
 
 ## Usage
@@ -105,7 +106,18 @@ class SendEmail implements ShouldQueue
 
 ### Dispatch the Queue
 
-You can use the normal Dispatcher or Queue Facade,... to dispatch the Queue Msgs:
+You can use the normal Dispatcher or Queue Facade,... to dispatch the Queue Msgs
+
+### As primary queue
+
+```env
+QUEUE_CONNECTION=database-priority
+```
+
+And you're ready to roll.
+
+### As secondary queue
+Specify the `database-priority` connection when dispatching a queue msg.
 
 ```php
 // use Dispatcher
@@ -117,6 +129,22 @@ use Illuminate\Support\Facades\Queue;
 
 Queue::connection('database-priority')
     ->push(new SendEmail($user, $emailContent));
+```
+
+I get that you guys might don't want to explicitly put the connection name. Alternatively, you can do this:
+
+```php
+class SendEmail implements ShouldQueue
+{
+    // first option
+    public $connection = 'database-priority';
+    
+    public function __construct()
+    {
+        // second option
+        $this->onConnection('database-priority');
+    }
+}
 ```
 
 ## Run The Queue Worker
